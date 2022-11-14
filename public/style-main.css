@@ -1,0 +1,122 @@
+body {
+  font-family: "Lato", sans-serif !important;
+  font-size: 1em !important;
+}
+#main-nav {
+  border-bottom: 1px solid #6c757d;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+}
+#b-title {
+  font-size: 3em !important;
+}
+#berry {
+  width: 250px;
+  height: 75px;
+}
+
+thead {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.sel-nav {
+  color: #fff;
+  font-family: "Lato";
+  font-size: 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  padding-bottom: 1.25rem;
+}
+
+.sel-nav:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+#nav-pad {
+  border-top: 1px solid #6c757d;
+  border-bottom: 1px solid #6c757d;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.btn {
+  background-color: #8143fd !important;
+  border: #8245fd !important;
+  transition: 0.4s !important;
+  /* style="background-color: #8245fd" */
+}
+.btn:hover {
+  box-shadow: 0px 0px 6px #6c757d;
+}
+
+#date {
+  font-style: italic;
+  color: #6c757d;
+}
+
+td {
+  transition: 0.2s !important;
+}
+
+p {
+  background-color: #8143fd !important;
+  margin-top: 1rem !important;
+  padding: 5px;
+  border: solid 1px #a3aeb7;
+  border-radius: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+p span {
+  display: block;
+  text-transform: none;
+  color: #a3aeb7;
+  letter-spacing: normal !important;
+  font-size: 0.85em !important;
+  font-weight: 200;
+  font-style: italic;
+}
+
+#li-news a {
+  color: #fff !important;
+  text-decoration: none !important;
+  transition: 0.3s;
+}
+
+#li-news a:hover {
+  /* font-size: 1.01em; */
+  color: #a3aeb7 !important;
+}
+
+#li-news {
+  text-align: left;
+  border: solid 1px #a3aeb7;
+  background-color: rgba(223, 223, 223, 0.1);
+  transition: 0.3s;
+}
+
+#li-news:hover {
+  background-color: #8143fd;
+  /* background-color: rgba(145, 64, 250, 0.322); */
+  border: solid 1px #702afb;
+  box-shadow: 0px 0px 8px #fff;
+}
+
+.foot {
+  color: #a3aeb7;
+  font-weight: 200;
+  font-style: italic;
+}
+
