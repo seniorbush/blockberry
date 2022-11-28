@@ -1,0 +1,92 @@
+<%-include("header")-%>
+
+
+<div class="container">
+    <div id="main-content" class="card text-bg-dark mb-3">
+        <img
+        id="berry"
+        src="\blockberry-logo-white.png"
+        class="d-inline-block align-text-top"
+      />
+      </a>
+      <div class="card-body">
+        <p class="card-text">Please complete the registration form.</p>
+        <form action="/signup" method="post">
+            <div class="mb-3 input-row">
+                <i class="bi bi-person"></i>
+                <input type="text" class="form-control" id="newName" placeholder="Name" name="name">             
+              </div>
+              <div class="name error"></div>
+            <div class="mb-3 input-row">
+              <i class="bi bi-person"></i>
+              <input type="email" class="form-control" id="newEmail" placeholder="Email" name="email">            
+            </div>
+            <div class="email error"></div>
+            <div class="mb-3 input-row">
+              <i class="bi bi-lock"></i>
+              <input type="password" class="form-control" id="newPassword" placeholder="Password" name="password">
+            </div>  
+            <div class="password error"></div>
+            <div class="buttons">
+              <button id="main-action" type="submit" class="btn btn-primary">Save</button> 
+              <a class="signup-link" href="/">Back</a>
+            </div>  
+            
+          </form>
+          <!-- <h5 class="guest">Explore website with a guest account</h5> -->
+      </div>
+    </div>
+</div>
+
+
+<script>
+  //LISTEN FOR FORM SUBMIT
+  const form = document.querySelector("form");
+  const nameError = document.querySelector(".name.error");
+  const emailError = document.querySelector(".email.error");
+  const passwordError = document.querySelector(".password.error");
+
+  form.addEventListener("submit", async (e) => {
+  
+    e.preventDefault();
+
+
+    //RESET ERRORS
+    nameError.textContent ="";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+
+    //GET VALUES
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    
+
+    try {
+      const res = await fetch("/signup", {
+        method: "POST",
+        body: JSON.stringify({ name, email, password}),
+        headers: {"Content-Type" : "application/json"}
+      });
+      const data = await res.json();
+
+
+      if (data.errors){
+        nameError.textContent = data.errors.name;
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+        location.assign("/");
+      }  
+    } catch (err) {
+      console.log(err);
+    };
+
+  });
+
+  
+</script>
+
+<%-include("footer")-%>

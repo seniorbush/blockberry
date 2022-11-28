@@ -1,3 +1,11 @@
+:root{
+  --main-accent-color: #702afb;
+  --secondary-accent-color: #8143fd;
+
+  --main-background-color:#212529;
+  --secondary-background-color:#b2c0ce;
+}
+
 body{
   box-sizing: border-box;
   margin: auto;
@@ -6,43 +14,108 @@ body{
 
 }
 
+/* .card-body{
+  background-color: var(--secondary-background-color);
+  
+} */
+
 img{
   max-width: 60%;
   align-self: center;
 }
 .container{
+  border: solid #b2c0ce .2em;
+  border-radius: 1.5em;
   position: relative;
   margin-top: 10%;
   min-width: 250px;
   max-width: 50%;
+  padding: .25rem;
 }
 
+
+.error{
+  color: var(--secondary-accent-color);
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: .5em;
+  font-size: 0.8em;
+  text-align: center;
+}
 
 .card-text{
   text-align: center;
 }
 
+
 .form-control{
+  border-radius: 1.5em;
   max-width: 75%;
+  padding-left: 2.5rem;
 }
 
 .input-row{
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 i {
-  margin-right: .5em;
+  position: absolute;
+  color: #212529;
+  left: 4.5rem;
 }
 
 .buttons{
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#b-log{
+
+.signup-link{
+  color: var(--secondary-background-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.signup-link:hover{
+  color: var(--main-accent-color);
+}
+
+#b-log{ 
+  width: 75%;
+  transition: 0.3s;
   margin-top: 1em;
+  border: solid .1em var(--main-accent-color);
+  background-color: var(--main-background-color);
+}
+
+#b-log:hover{
+  background-color: var(--main-accent-color);
+}
+
+#b-log:active{
+  border: solid .1em var(--main-background-color);
+}
+
+#main-action{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 1.5em;
+  width: 75%;
+  transition: 0.3s;
+  background-color: var(--main-background-color);
+  border: solid .1em var(--secondary-background-color);
+}
+
+#main-action:hover{
+  background-color: var(--main-accent-color);
+}
+
+#main-action:active{
+  border: solid .1em var(--main-background-color);
 }
