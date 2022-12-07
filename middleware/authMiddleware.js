@@ -52,3 +52,4 @@ const checkUser = (req, res, next) => {
 
 
 module.exports = { requireAuth, checkUser };
+

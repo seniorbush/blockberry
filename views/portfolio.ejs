@@ -1,0 +1,246 @@
+<%-include("header-main")-%>
+</header>
+    <div class="container">
+        
+        
+
+        <div id="token-portfolio" class="container">
+
+            <section id="pieAndValue" class="sectionA">
+                <canvas id="myChart"></canvas>
+            </section>
+             
+    
+            <section class="sectionB">
+                <h2>Current Balance: </h2>
+                <div class="total">
+                    <h1>£</h1>
+                    <h1 class="total-value"></h1>
+                </div>
+                
+            </section>
+
+        </div>
+
+        <section class="sectionC">
+            <form id="tokenForm">
+                <div class="mb-3 input-row">
+                    <label for="newToken">Token Name: </label>
+                    <input type="text" class="form-control" id="newToken" placeholder="e.g. Bitcoin" required>             
+                </div>
+                <div class="mb-3 input-row">
+                    <label for="newQty">Quantity: </label>
+                    <input type="number" step="any" class="form-control" id="newQty" placeholder="..." required>             
+                </div>
+                <div class="mb-3 input-row">
+                    <button id="addButton" class="btn btn-primary" type="submit">Add</button>             
+                </div>   
+            </form>  
+        </section>
+
+        <section class="sectionD">
+            
+            <div class="user-token-table">
+                <div class="table-title">
+                    <h6><%=user.name %>'s  assests</h6>
+                </div>
+                <table id="portTable" class="table-body table table-dark table-hover table-lg">
+                    <thead>
+                      <tr>
+                        <td></td>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Balance</td>
+                        <td></td>
+                      </tr>
+                    </thead>
+                    <tbody class="table-body"></tbody>
+                  </table>
+            </div>
+
+        </section>
+        
+
+        
+    </div>
+
+
+    <script>
+        //UPDATE TOTAL VALUE
+
+        let labels = [];
+        let valueArray = [];
+        const backgroundColor = [];
+
+
+        const totalValue = document.querySelector(".total-value");
+                        
+
+        const updateTotalValue = function(valueArray){
+            let result = 0;
+
+            for (let i = 0; i < valueArray.length; i++){
+                                
+                result += parseFloat(valueArray[i]);
+                                
+            }
+            totalValue.innerHTML = `${result.toLocaleString("en-US")}`;           
+        }
+
+        const randomColor = function (labels){
+            
+            for (i = 0; i <labels.length; i++){
+                const r = Math.floor(Math.random() * 255);
+                const g = Math.floor(Math.random() * 255);
+                const b = Math.floor(Math.random() * 255);
+                backgroundColor.push(`rgb(${r}, ${g}, ${b}`);
+            }
+        }
+
+        updateTotalValue(valueArray);
+        randomColor(labels);
+        
+
+        const ctx = document.querySelector("#myChart").getContext("2d");
+
+
+        let data = {
+            labels,
+            datasets: [
+                {
+                data: valueArray,
+                backgroundColor: backgroundColor,
+                borderWidth: 2,
+                hoverOffset: 15,
+                hoverBackgroundColor: backgroundColor,
+                  
+            }
+        ]
+        };
+
+        const config = {
+            type: "doughnut",
+            data: data,
+            options: {
+               
+                responsive: false,
+                aspectRatio: 1,
+                legend: {
+                    position: 'bottom',
+                }
+
+            }
+        }
+
+        const myChart = new Chart(ctx, config);
+        
+        myChart.update();
+
+
+
+        
+        //POPULATE LIST WITH USER FORM INPUT
+         
+        document.querySelector("#tokenForm").addEventListener("submit", (e) => {
+            // INIT FORM VARIABLES
+            let tokenName = document.querySelector("#newToken").value;
+            let tokenQty = document.querySelector("#newQty").value;
+            let userTokenList = document.querySelector(".utl")
+            //
+            
+            
+            //API TOKEN NAME CALL ERRORS
+            if(tokenName === "quant"){
+                tokenName = "quant-network";
+            } else if (tokenName.toLowerCase() === "xrp"){
+                tokenName = "ripple";
+            } else if (tokenName.includes(" ")) {
+                tokenName = tokenName.replace(" ", "-");
+            }
+
+            
+
+            fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&ids=${tokenName.toLowerCase()}&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
+            .then((data) => {
+                return data.json();
+            })
+            .then((tokenData) => {
+                tokenData.map((values) => {
+                    let tableData = "";
+                    //Iterate through object and append data to table
+                    tokenData.map((values) => {
+                        
+                        tableData += 
+                        `<tr>
+                        <td><img id="img-logo" src="${values.image}"></td>   
+                        <td>${values.name}</td>
+                        <td>£${values.current_price}</td>
+                        <td>${tokenQty}</td>
+                        <td>${parseFloat(values.current_price*tokenQty).toFixed(2)}</td>
+                        <td><i id="del-data" class="del bi bi-trash"></i></td>
+                        </tr>`;
+
+                        //UPDATE CHART
+                        labels.push(values.name);
+                        // chartData.push(parseFloat(values.current_price*tokenQty).toFixed(2));
+                        
+                        
+                        valueArray.push(parseFloat(values.current_price*tokenQty).toFixed(2));
+                       
+
+                        updateTotalValue(valueArray);
+                        randomColor(labels);
+
+
+                        myChart.update();
+                    })
+                    document.querySelector("tbody").innerHTML += tableData; 
+                    document.getElementById("tokenForm").reset();
+                });
+                
+            });
+            e.preventDefault();
+        })
+
+
+
+        //REMOVE VALUE FROM ARRAY                       
+        document.querySelector(".table-body").addEventListener("click", (e) => {      
+            
+            const delItem = e.target.closest("#del-data");
+            const nameValue = delItem.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+            const lineValue = delItem.parentElement.previousElementSibling.innerHTML;
+
+            if (delItem !== null) {
+
+                //ITTERATE THROUGH ARRAY, REMOVE SPECIFIC VALUE BY FINDING INDEX
+                const valueIndex = valueArray.indexOf(parseFloat(lineValue).toFixed(2))
+                const labelIndex = labels.indexOf(nameValue)
+                
+                valueArray.splice(valueIndex, 1); 
+                labels.splice(labelIndex, 1);
+                
+                
+                //REMOVE TABLE ROW ELEMENT
+                delItem.parentElement.parentElement.remove();
+
+            }
+
+            updateTotalValue(valueArray);
+            myChart.update();
+            e.preventDefault();
+        }); 
+       
+
+    </script>
+
+
+
+
+
+
+
+
+
+<%-include("footer")-%>

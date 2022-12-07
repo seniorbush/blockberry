@@ -1,34 +1,12 @@
 <%-include("header-main")-%>
 
-    <header>
-      <nav id="main-nav" class="container navbar navbar-dark navbar-expand-lg">
-        <div class="container-fluid">
-          <a id="b-title" class="sel-nav" href="/">
-            <img
-              id="berry"
-              src="/blockberry-logo-white.png"
-              
-              class="d-inline-block align-text-top"
-            />
-            </a
-          >
 
-          <div class="nav justify-content-end" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              
-              <li class="nav-item">
-                <a class="nav-link" href="#"><%=user.name %></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Log out</a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </nav>
       <nav class="container">
-        <p>Latest News Updates <span>(Powered by newsdata.io)</span></p>
-        <ul class="list-group"></ul>
+        
+        <div id="news-cards" class="container">
+
+        </div>
       </nav>
       <nav id="nav-pad" class="container navbar navbar-dark">
         <div class="container justify-content-space-between">
@@ -62,13 +40,11 @@
           <tbody></tbody>
         </table>
       </section>
-      <section class="news-column">
-        <ul class="news-list"></ul>
-      </section>
+  
     </main>
 
     <script>
-
+      
       //Fetch asset prices from Coingecko
 fetch(
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
@@ -82,10 +58,10 @@ fetch(
       objectData.map((values) => {
         tableData += `<tr>
         <td>${values.market_cap_rank}</td>
-        <td><img src="${values.image}">  ${values.name}</td>
+        <td><img id="img-logo" src="${values.image}">  ${values.name}</td>
         <td>£${values.current_price.toLocaleString("en-US")}</td>
         <td class="text-success">${parseFloat(values.price_change_percentage_24h).toFixed(2)}%</td>
-        <td>£${parseFloat(values.ath).toFixed(2).toLocaleString("en-US")}</td>
+        <td>£${values.ath.toLocaleString("en-US")}</td>
         <td>£${values.market_cap.toLocaleString("en-US")}</td>
         </tr>`;
       });
@@ -108,22 +84,34 @@ fetch(
   
   
   fetch(
-    "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=cryptocurrency&country=gb&language=en&category=business,technology,world "
+    "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=coindesk&language=en&category=business,technology  "
   )
     .then((data) => {
       return data.json();
     })
     .then((objectData) => {
-      listData = "";
+      newsData = "";
       // console.log(objectData.results);
       objectData.results.map((values) => {
- 
-        listData += `<li id="li-news" class="list-group-item list-group-item-action list-group-item-light"><a href='${values.link}'>${values.title}</a></li>`;
+        
+        if (values.image_url) {
+          newsData += `<div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="${values.image_url}" alt="">
+          <div class="card-body">
+            <a href='${values.link}'>
+              <p class="card-text">${values.title}</p>
+            </a>
+        </div>
+          
+        </div>`;
+
+        }
+        
       });
   
       // console.log(listData);
   
-      document.querySelector(".list-group").innerHTML = listData;
+      document.querySelector("#news-cards").innerHTML = newsData;
     });
   
   //EVENT LISTENER TO SUBMIT INPUT AND FETCH COIN GECKO API
@@ -144,10 +132,10 @@ fetch(
           objectData.map((values) => {
             tableData += `<tr>
         <td>${values.market_cap_rank}</td>
-        <td><img src="${values.image}">  ${values.name}</td>
+        <td><img id="img-logo"src="${values.image}">  ${values.name}</td>
         <td>£${values.current_price.toLocaleString("en-US")}</td>
         <td class="text-success">${parseFloat(values.price_change_percentage_24h).toFixed(2)}%</td>
-        <td>£${parseFloat(values.ath).toFixed(2).toLocaleString("en-US")}</td>
+        <td>£${values.ath.toLocaleString("en-US")}</td>
         <td>£${values.market_cap.toLocaleString("en-US")}</td>
         </tr>`;
           });
@@ -170,8 +158,10 @@ fetch(
     </script>
     <footer class="container">
     <div class="foot">
-      Powered by CoinGecko
-      <img id = "gecko" src="/coingecko_logo_without_text.png" />
+      <div class="foot-gecko">Powered by CoinGecko
+        <img id="img-logo" src="/coingecko_logo_without_text.png" /></div>
+      
+      <p id="news-text">Latest News Updates <span>(Powered by newsdata.io)</span></p>
     </div>
   </footer>
 

@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const { addAbortSignal } = require("stream");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 
+
 dotenv.config({path: "./routes/.env"});
 
 //MIDDLEWARE, LOAD STATIC ASSETS
@@ -37,16 +38,8 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser:true})
 ///ROUTE
 app.get("*", checkUser);
 app.get("/", requireAuth, (req, res) => res.render("home", { title: "Blockberry | Main" }));
+app.get("/portfolio", requireAuth, (req, res) => res.render("portfolio", { title: "Blockberry | Portfolio" }));
 app.use(authRoutes);
-
-
-
-  
-  
-
-
-
-
 
 
 

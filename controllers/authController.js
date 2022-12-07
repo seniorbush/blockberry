@@ -47,8 +47,6 @@ const creatToken = (id) => {
 
 
 
-
-
 module.exports.signup_get = (req, res) => {
     res.render("signup", { title: "Blockberry | Signup" });
 };
@@ -58,6 +56,9 @@ module.exports.login_get = (req, res) => {
     res.render("login", { title: "Blockberry | Login" });
 };
 
+module.exports.portfolio_get = (req, res) => {
+  res.render("portfolio", { title: "Blockberry | Portfolio" });
+};
 
 module.exports.signup_post = async (req, res) => {
     const { name, email, password } = req.body;
