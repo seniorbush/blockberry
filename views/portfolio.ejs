@@ -55,7 +55,7 @@
                         <td></td>
                       </tr>
                     </thead>
-                    <tbody class="table-body"></tbody>
+                    <tbody class="table-body" id="tb"></tbody>
                   </table>
             </div>
 
@@ -67,16 +67,17 @@
 
 
     <script>
-        //UPDATE TOTAL VALUE
-
+        //INIT VARIABLES
         let labels = [];
         let valueArray = [];
         const backgroundColor = [];
-
-
+        const table = document.querySelector("#tb");
         const totalValue = document.querySelector(".total-value");
-                        
+      
+        
+        // table.rows[0].lastChild.previousSibling.previousElementSibling.innerHTML
 
+        //UPDATE TOTAL VALUE
         const updateTotalValue = function(valueArray){
             let result = 0;
 
@@ -127,7 +128,7 @@
                 responsive: false,
                 aspectRatio: 1,
                 legend: {
-                    position: 'bottom',
+                    position: 'left',
                 }
 
             }
@@ -159,7 +160,67 @@
                 tokenName = tokenName.replace(" ", "-");
             }
 
+
+
             
+            searchTableForDuplicate = function () {
+            //GET TABLE ELEMENT
+             
+            if (table.rows.length > 1) {
+            //ITERATE THROUGH TABLE BACKWARDS
+            for (let i = 0; i < table.rows.length; i++) {
+                for (let j = i + 1; j < table.rows.length; j++) {
+                // GET TABLE ROW VARIABLE
+                let tr = table.getElementsByTagName("tr");
+                //TABLE ROW, 1ST CELL, i
+                let td = tr[i].getElementsByTagName("td")[1];
+                //TABLE ROW, 1ST CELL, j
+                let tdp = tr[j].getElementsByTagName("td")[1];
+
+                //CHECK FOR EQUALITY
+                if (tdp.innerHTML === td.innerHTML) {
+
+                    //REMOVE SPECIFIC VALUE BY FINDING INDEX
+                    let valueIndex = valueArray.indexOf(parseFloat(td.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML).toFixed(2))
+                    let tempValueIndex = valueArray.indexOf(parseFloat(tdp.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML).toFixed(2))
+                    let labelIndex = labels.indexOf(td.innerHTML)
+
+
+                    let a = parseFloat(valueArray[valueIndex]);
+                    let b = parseFloat(valueArray[tempValueIndex]); 
+                    let tempValue = parseFloat(b + a).toFixed(2);
+             
+
+                    valueArray[valueIndex] = tempValue
+                
+                
+                    valueArray.splice(tempValueIndex, 1);
+                   
+                    labels.splice(labelIndex, 1);
+                    console.log(valueArray)               
+
+                    //ADD QTY (IN ROW)
+                    tdp.nextElementSibling.nextElementSibling.innerHTML = `${
+                    parseFloat(td.nextElementSibling.nextElementSibling.innerHTML) +
+                    parseFloat(tdp.nextElementSibling.nextElementSibling.innerHTML)}`;
+
+                    //ADD BALANCE (IN ROW)
+                    tdp.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML = 
+                    `${
+                    parseFloat(td.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML) +
+                    parseFloat(tdp.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML)}`;
+                    
+                    
+                    myChart.update();
+
+                    td.parentElement.remove();
+
+                    
+                }
+                }
+            }
+            }
+            }
 
             fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&ids=${tokenName.toLowerCase()}&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
             .then((data) => {
@@ -187,7 +248,7 @@
                         
                         
                         valueArray.push(parseFloat(values.current_price*tokenQty).toFixed(2));
-                       
+                        
 
                         updateTotalValue(valueArray);
                         randomColor(labels);
@@ -196,13 +257,16 @@
                         myChart.update();
                     })
                     document.querySelector("tbody").innerHTML += tableData; 
+                    
+                    searchTableForDuplicate();
+                    
+                    
                     document.getElementById("tokenForm").reset();
                 });
                 
             });
             e.preventDefault();
         })
-
 
 
         //REMOVE VALUE FROM ARRAY                       
@@ -214,7 +278,7 @@
 
             if (delItem !== null) {
 
-                //ITTERATE THROUGH ARRAY, REMOVE SPECIFIC VALUE BY FINDING INDEX
+                //REMOVE SPECIFIC VALUE BY FINDING INDEX
                 const valueIndex = valueArray.indexOf(parseFloat(lineValue).toFixed(2))
                 const labelIndex = labels.indexOf(nameValue)
                 
