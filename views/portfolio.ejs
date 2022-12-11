@@ -7,7 +7,7 @@
         <div id="token-portfolio" class="container">
 
             <section id="pieAndValue" class="sectionA">
-                <canvas id="myChart"></canvas>
+                <canvas width="500" height="500" id="myChart"></canvas>
             </section>
              
     
@@ -42,7 +42,7 @@
             
             <div class="user-token-table">
                 <div class="table-title">
-                    <h6><%=user.name %>'s  assests</h6>
+                    <h6><i class="bi bi-person-fill"></i><%=user.name %></h6>
                 </div>
                 <table id="portTable" class="table-body table table-dark table-hover table-lg">
                     <thead>
@@ -67,15 +67,29 @@
 
 
     <script>
+        
         //INIT VARIABLES
         let labels = [];
         let valueArray = [];
+        let assetTable = [];
+
         const backgroundColor = [];
         const table = document.querySelector("#tb");
         const totalValue = document.querySelector(".total-value");
       
+
+        function checkLS() {
+            if (localStorage.getItem("labels") === "[]") {
+                localStorage.clear();
+            }
+        }
+       
+
+        checkLS();
+
+        getDataFromLocalStorage();
         
-        // table.rows[0].lastChild.previousSibling.previousElementSibling.innerHTML
+        
 
         //UPDATE TOTAL VALUE
         const updateTotalValue = function(valueArray){
@@ -128,18 +142,82 @@
                 responsive: false,
                 aspectRatio: 1,
                 legend: {
-                    position: 'left',
+                    position: 'right',
                 }
 
             }
         }
 
         const myChart = new Chart(ctx, config);
-        
         myChart.update();
 
+        
 
+        //STORE IN LS
+        function storeDataInLocalStorage() {
+            checkLS()
+            if(!localStorage.getItem("labels") === null) {
+                assetTable = JSON.parse(localStorage.getItem("assetTable"))
+                labels = JSON.parse(localStorage.getItem("labels"));
+                valueArray = JSON.parse(localStorage.getItem("valueArray"));
+            }
+            let dataArray = [];
+            let rows = table.rows;
 
+            //LOOP THROUGH T ROWS
+            for (let i = 0; i < rows.length; i++) {
+
+                let cells = rows[i].cells;
+                let rowArray = [];
+                //LOOP THROUGH T CELLS
+                for (let j = 0; j < cells.length; j++) {
+
+                    rowArray.push(cells[j].innerHTML);
+                }
+                
+                dataArray.push(rowArray);
+                assetTable = dataArray; 
+            }
+
+           
+            
+            localStorage.setItem("labels", JSON.stringify(labels));
+            localStorage.setItem("valueArray", JSON.stringify(valueArray));
+            localStorage.setItem("assetTable", JSON.stringify(assetTable));
+
+        }
+
+        //GET DATA FROM LS
+        function getDataFromLocalStorage() {
+            checkLS()
+            if(localStorage.getItem("labels") === null) {
+                console.log("No data in local storage.")
+            } else {
+                labels = JSON.parse(localStorage.getItem("labels"));
+                valueArray = JSON.parse(localStorage.getItem("valueArray"));
+                assetTable = JSON.parse(localStorage.getItem("assetTable"));
+            
+                for (let i = 0; i < assetTable.length; i++) {
+
+                    let rowData = assetTable[i];
+
+                    let row = table.insertRow();
+
+                    for (let j = 0; j < rowData.length; j++) {
+                        let cellData = rowData[j];
+                        let cell = row.insertCell();
+                        cell.innerHTML = cellData;
+                    }
+                }
+                
+            
+            
+            }
+            
+        }
+      
+
+        
         
         //POPULATE LIST WITH USER FORM INPUT
          
@@ -191,7 +269,7 @@
                     let tempValue = parseFloat(b + a).toFixed(2);
              
 
-                    valueArray[valueIndex] = tempValue
+                    valueArray[valueIndex] = tempValue;
                 
                 
                     valueArray.splice(tempValueIndex, 1);
@@ -259,7 +337,7 @@
                     document.querySelector("tbody").innerHTML += tableData; 
                     
                     searchTableForDuplicate();
-                    
+                    storeDataInLocalStorage();
                     
                     document.getElementById("tokenForm").reset();
                 });
@@ -277,7 +355,7 @@
             const lineValue = delItem.parentElement.previousElementSibling.innerHTML;
 
             if (delItem !== null) {
-
+                
                 //REMOVE SPECIFIC VALUE BY FINDING INDEX
                 const valueIndex = valueArray.indexOf(parseFloat(lineValue).toFixed(2))
                 const labelIndex = labels.indexOf(nameValue)
@@ -287,15 +365,22 @@
                 
                 
                 //REMOVE TABLE ROW ELEMENT
-                delItem.parentElement.parentElement.remove();
-
+                delItem.parentElement.parentElement.remove();   
+                
+   
             }
-
-            updateTotalValue(valueArray);
+            
+            updateTotalValue(valueArray);  
+            storeDataInLocalStorage();
             myChart.update();
+            checkLS()
             e.preventDefault();
         }); 
-       
+    
+
+        // document.addEventListener("DOMContentLoaded", getDataFromLocalStorage);
+
+
 
     </script>
 

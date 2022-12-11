@@ -9,6 +9,7 @@
 body {
   font-family: "Lato", sans-serif !important;
   font-size: 1em !important;
+  /* max-width: 100vw; */
 }
 #main-nav {
   border-bottom: 1px solid #6c757d;
@@ -38,6 +39,7 @@ thead {
   font-weight: 700;
 }
 
+
 .sel-nav {
   color: #fff;
   font-family: "Lato";
@@ -59,9 +61,7 @@ thead {
 }
 
 
-.btn:hover {
-  box-shadow: 0px 0px 6px #6c757d;
-} */
+
 
 #date, #news-text {
   font-style: italic;
@@ -95,6 +95,7 @@ td {
 .card{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: .5rem;
   /* border: solid .5rem var(--secondary-background-color); */
   border-radius: 12px;
@@ -151,8 +152,9 @@ a {
 }
 
 .sectionC{
-  padding: 5%;
+  /* padding: 5%; */
   padding-top: 5%;
+
 }
 
 #newToken, #newQty{
@@ -164,13 +166,17 @@ a {
 
 .table-title{
   color: var(--secondary-background-color);
-  text-align: center;
+  text-align: right;
   text-transform: uppercase;
   letter-spacing: .1em;
   padding: .2rem;
   padding-top: .6rem;
   border-top: solid 1px var(--secondary-background-color);
   border-bottom: solid 1px var(--secondary-background-color);
+}
+
+.table-title i {
+  padding-right: .2rem;
 }
 
 #del-data{
@@ -198,7 +204,7 @@ a {
 
 #bb-box{
   color: transparent;
-  transition: all .5s ease;
+  transition: all .9s ease;
 }
 
 .nav-link {
@@ -217,3 +223,23 @@ a {
   display: flex;
   justify-content: center;
 }
+
+#navbarText{
+  display: block;
+  text-align: right;
+  
+}
+
+
+
+/* @media only screen and (max-width: 768px) {
+  
+  body {
+    width: 100%;
+  }
+  
+  table{
+  overflow-x: hidden;
+} 
+}  */
+
