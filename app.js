@@ -23,11 +23,11 @@ app.set("view engine", "ejs");
 
 
 //DATABASE CONNECTION
-// const dbURI = "mongodb+srv://seniorbush:rmu9yrk-TVH7ycg2rpz@atlascluster.fa2z3u9.mongodb.net/bb-users?retryWrites=true&w=majority"
+
 mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser:true})
   .then((result) => {
     console.log("Connected to Database");
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Listening on Port:3000, http://localhost:3000");
     })
     
