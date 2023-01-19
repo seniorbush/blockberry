@@ -118,7 +118,18 @@ fetch(
   const searchTokens = document.querySelector("#search-tokens");
   searchTokens.addEventListener("submit", (e) => {
     //
-    const param = document.getElementById("param").value;
+    let param = document.getElementById("param").value;
+
+    //API TOKEN NAME CALL ERRORS
+    if(param === "quant"){
+      param = "quant-network";
+            } else if (param.toLowerCase() === "xrp"){
+              param = "ripple";
+            } else if (param.includes(" ")) {
+              param = param.replace(" ", "-");
+            }
+
+
     fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&ids=${param.toLowerCase()}&order=market_cap_desc&per_page=100&page=1&sparkline=false`
     )

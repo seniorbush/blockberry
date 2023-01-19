@@ -9,7 +9,7 @@ const { addAbortSignal } = require("stream");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 
 
-dotenv.config({path: "./routes/.env"});
+dotenv.config({path: "./.env"});
 
 //MIDDLEWARE, LOAD STATIC ASSETS
 app.use(express.static("public"));
@@ -23,8 +23,8 @@ app.set("view engine", "ejs");
 
 
 //DATABASE CONNECTION
-// const dbURI = "mongodb+srv://seniorbush:rmu9yrk-TVH7ycg2rpz@atlascluster.fa2z3u9.mongodb.net/bb-users?retryWrites=true&w=majority"
-mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser:true})
+const dbURI = "mongodb+srv://seniorbush:rmu9yrk-TVH7ycg2rpz@atlascluster.fa2z3u9.mongodb.net/blockberry?retryWrites=true&w=majority"
+mongoose.connect(dbURI, {useNewUrlParser:true})
   .then((result) => {
     console.log("Connected to Database");
     app.listen(3000, () => {
