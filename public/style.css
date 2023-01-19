@@ -16,10 +16,7 @@ body{
   align-items: center;
 }
 
-.card-body{
-  background-color: var(--main-background-color);
-  
-}
+
 
 img{
   max-width: 70%;

@@ -1,10 +1,15 @@
 <%-include("header-main")-%>
 </header>
+<div class="table-title">
+    <h6><i class="bi bi-person-fill"></i> Logged in as: <b><%=user.name %></b></h6>
+
+</div>
     <div class="container">
         
         
 
         <div id="token-portfolio" class="container">
+            
 
             <section id="pieAndValue" class="sectionA">
                 <canvas width="500" height="500" id="myChart"></canvas>
@@ -20,12 +25,17 @@
                 
             </section>
 
+           
+            
         </div>
 
         <section class="sectionC">
+            <div class="table-title">
+                <h5><i class="bi bi-plus-circle"></i> ADD NEW ASSET :</h5>
+            </div>
             <form id="tokenForm">
                 <div class="mb-3 input-row">
-                    <label for="newToken">Token Name: </label>
+                    <label for="newToken">Asset Name: </label>
                     <input type="text" class="form-control" id="newToken" placeholder="e.g. Bitcoin" required>             
                 </div>
                 <div class="mb-3 input-row">
@@ -41,9 +51,7 @@
         <section class="sectionD">
             
             <div class="user-token-table">
-                <div class="table-title">
-                    <h6><i class="bi bi-person-fill"></i><%=user.name %></h6>
-                </div>
+                
                 <table id="portTable" class="table-body table table-dark table-hover table-lg">
                     <thead>
                       <tr>
@@ -107,7 +115,7 @@
             
             for (i = 0; i <labels.length; i++){
                 const r = Math.floor(Math.random() * 255);
-                const g = Math.floor(Math.random() * 255);
+                const g = Math.floor(Math.random() * 25);
                 const b = Math.floor(Math.random() * 255);
                 backgroundColor.push(`rgb(${r}, ${g}, ${b}`);
             }

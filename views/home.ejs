@@ -94,7 +94,7 @@ fetch(
       objectData.results.map((values) => {
         
         if (values.image_url) {
-          newsData += `<div class="card" style="width: 18rem;">
+          newsData += `<div class="card">
           <img class="card-img-top" src="${values.image_url}" alt="">
           <div class="card-body">
             <a href='${values.link}'>
