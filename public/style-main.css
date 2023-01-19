@@ -37,7 +37,11 @@ body {
 thead {
   font-size: 1rem;
   font-weight: 700;
+  position: sticky;
+  top: 0;
+
 }
+
 
 
 .sel-nav {
@@ -110,6 +114,7 @@ td {
   height: 15vh;
   object-fit: cover;
 }
+
 .card:hover{
   box-shadow: 0 0 10px rgba(217, 216, 216, 0.284);
 }
