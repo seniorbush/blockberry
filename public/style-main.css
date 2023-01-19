@@ -93,10 +93,12 @@ td {
 }
 
 .card{
+  height: 30vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   padding: .5rem;
+  border: none;
   /* border: solid .5rem var(--secondary-background-color); */
   border-radius: 12px;
   /* box-shadow: 0 0 10px rgba(217, 216, 216, 0.15); */
@@ -104,7 +106,10 @@ td {
   transition: .5s;
   background-color: var(--main-background-color);
 }
-
+.card-img-top{
+  height: 15vh;
+  object-fit: cover;
+}
 .card:hover{
   box-shadow: 0 0 10px rgba(217, 216, 216, 0.284);
 }
