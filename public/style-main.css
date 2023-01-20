@@ -137,11 +137,11 @@ td {
 
 .card-text{
   transition: .5s;
-  color: var(--secondary-background-color);
+  color: rgba(223, 223, 223, 0.78);
 }
 
 .card-text:hover {
-  color: var(--secondary-accent-color);;
+  color: var(--main-accent-color);;
 }
 
 a {
@@ -149,23 +149,24 @@ a {
 }
 
 ::-webkit-scrollbar {
+  height: .75rem;
+  width: .75rem;
   
-  display: none;
 }
-/* 
+
 ::-webkit-scrollbar-thumb{
   border-radius: .5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8143fd;
+  background: linear-gradient(#702afbb0, #8143fdac);
 }
 
 ::-webkit-scrollbar-track {
   background: rgba(28, 27, 27, 0.729);
 
 
-} */
+}
 
 #token-portfolio{
   padding-top: 4rem;
