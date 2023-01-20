@@ -4,6 +4,8 @@
 
   --main-background-color:#212529;
   --secondary-background-color:#6c757d;
+
+  
 }
 
 body {
@@ -13,11 +15,12 @@ body {
 }
 
 .container-fluid{
-  background-color: var(--main-accent-color);
+  background: linear-gradient(#702afb, #212529ae);
   border-radius: 12px;
   border-bottom-left-radius: 0 ;
   border-bottom-right-radius: 0 ;
 }
+
 
 
 #main-nav {
@@ -48,11 +51,16 @@ thead {
   font-weight: 700;
   position: sticky;
   top: 0;
+}
+
+#stickTable{
+  background: linear-gradient(#702afbb0, #8143fdac);
 
 }
 
-
-
+#stickRow{
+  border-radius: 12px;
+}
 .sel-nav {
   color: #fff;
   font-family: "Lato";
@@ -141,22 +149,23 @@ a {
 }
 
 ::-webkit-scrollbar {
-  height: .75rem;
-  width: .75rem;
+  
+  display: none;
 }
-
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-track {
+/* 
+::-webkit-scrollbar-thumb{
   border-radius: .5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary-accent-color);
+  background: #8143fd;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(83, 83, 83, 0.399);
-}
+  background: rgba(28, 27, 27, 0.729);
+
+
+} */
 
 #token-portfolio{
   padding-top: 4rem;
