@@ -15,6 +15,7 @@ body {
 }
 
 .container-fluid{
+  padding-top: .5rem;
   background: linear-gradient(#702afb, #212529ae);
   border-radius: 12px;
   border-bottom-left-radius: 0 ;

@@ -28,7 +28,7 @@ mongoose.connect(dbURI, {useNewUrlParser:true})
   .then((result) => {
     console.log("Connected to Database");
     app.listen(3000, () => {
-      console.log("Listening on Port:3000, http://localhost:3000");
+      console.log("http://localhost:3000");
     })
     
   })
