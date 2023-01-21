@@ -14,32 +14,44 @@ body{
   height: 100vh;
   display: flex;
   align-items: center;
-}
+  background: linear-gradient(#343a41ae,#702afb);
 
-
-
-img{
-  max-width: 70%;
-  align-self: center;
 }
 
 #focus{
-
-  max-width: 700px;
-  border: solid #b2c0ce .1em;
-  border-radius: 1.5em;
-  padding: 4rem 1rem;
-
+  height:100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #main-content {
-  border: none;
+  position: relative;
+  background: radial-gradient(#212529, #00000011);
+  border: solid 3px #191b1e48;
+  height: 50vh;
+  width: 30vw;
+  padding: 2rem;
+  box-shadow: 0 25px 50px 0 #21252988;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
+.card-body{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 .error{
   color: var(--secondary-accent-color);
-  padding-top: 0;
-  margin-top: 0;
+  padding: 0;
+  margin: 0;
   margin-bottom: .5em;
   font-size: 0.8em;
   text-align: center;
@@ -49,14 +61,18 @@ img{
   text-align: center;
 }
 
+form{
+  border-top: solid 10px #702afbbc;
+  padding-top: .8rem;
+}
 
 .form-control{
-  border-radius: .5em;
-  max-width: 90%;
+  
+  max-width: 95%;
 }
 
 .input-row{
-  position: relative;
+  width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,11 +80,12 @@ img{
 
 i {
   color: #fff;
-  
+  padding-right: 5px;
 }
 #email-icon, #password-icon, #signup-icon{
   display: flex;
   justify-content: space-evenly;
+  padding-right: 10px;
 }
 .buttons{
   
@@ -76,6 +93,7 @@ i {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: ease-in-out 1s;
 }
 
 
@@ -83,6 +101,7 @@ i {
   color: var(--secondary-background-color);
   text-decoration: none;
   transition: 0.3s;
+  
 }
 
 .signup-link:hover{
@@ -132,5 +151,33 @@ i {
 
 
 #berry {
-  min-width: 100%;
+ width: 25vw;
+}
+
+
+@media only screen and (max-width: 1500px) {
+  body{
+    font-size: 14px;
+  }
+  #main-content {
+    height: 80vh;
+    width: 80vw;
+    padding: .3rem;
+    box-shadow: 0 25px 60px 0 #212529ae;
+    border-radius: 50px;
+    
+  }
+  .input-row{
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-control{
+    font-size: 14px;
+  }
+  #berry{
+    width: 78vw;
+  }
+  
 }
