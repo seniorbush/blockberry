@@ -266,7 +266,20 @@ color: #fff;
   
 } */
 
+#addButton{
+  border-radius: .5em;
+  background-color: transparent !important;
+  padding: 0.2rem 2rem;
+  font-size: 1em;
+  border:2px solid var(--secondary-accent-color) !important;
+  outline: none;
+  transition: all .3s ease;
 
+}
+#addButton:hover{
+  background-color: var(--secondary-accent-color) !important;
+  border-color: transparent;
+}
 
 @media only screen and (max-width: 800px) {
   .container-fluid{
