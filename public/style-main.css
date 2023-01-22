@@ -237,7 +237,9 @@ a {
   transition: all .9s ease;
 }
 
+
 .nav-link {
+  
   color: #fff;
   transition: all .5s ease;
 }
@@ -255,11 +257,14 @@ color: #fff;
   justify-content: center;
 }
 
-#navbarText{
+.navbar-nav {
+  --bs-nav-link-padding-x: 1rem;
+}
+/* #navbarText{
   display: block;
   text-align: right;
   
-}
+} */
 
 
 
@@ -292,6 +297,13 @@ color: #fff;
   }
   .table-title h5{
     font-size: 14px;
+  }
+  .nav-link {
+    font-size: .8em;
+  }
+  #date{
+    font-size: .8rem;
+    padding-bottom: .3rem;
   }
 }  
 
