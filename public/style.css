@@ -29,7 +29,6 @@ body{
 }
 
 #main-content {
-  position: relative;
   background: radial-gradient(#212529, #00000011);
   border: solid 3px #191b1e48;
   height: 50vh;
@@ -101,9 +100,12 @@ i {
   transition: ease-in-out 1s;
 }
 
+.buttons p {
+  color: var(--secondary-background-color)
+}
 
 .signup-link{
-  color: var(--secondary-background-color);
+  color: #fff;
   text-decoration: none;
   transition: 0.3s;
   
@@ -154,11 +156,20 @@ i {
 }
 
 
-
 #berry {
  width: 25vw;
 }
 
+.guest {
+  border: none;
+  padding: 0.2rem .5rem;
+  color: #fff;
+  background: transparent;
+}
+
+.guest:hover{
+  color: var(--secondary-accent-color) !important;
+}
 
 @media only screen and (max-width: 1500px) {
   body{
