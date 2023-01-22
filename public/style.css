@@ -31,8 +31,8 @@ body{
 #main-content {
   background: radial-gradient(#212529, #00000011);
   border: solid 3px #191b1e48;
-  height: 50vh;
-  width: 30vw;
+  height: 55vh;
+  width: 35vw;
   padding: 2rem;
   box-shadow: 0 25px 50px 0 #21252988;
   border-radius: 50px;
