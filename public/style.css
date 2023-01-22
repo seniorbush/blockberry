@@ -16,14 +16,16 @@ body{
   align-items: center;
   background: linear-gradient(#343a41ae,#702afb);
 
+  
 }
 
 #focus{
-  height:100vh;
-  width: 100vw;
+  height:100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 #main-content {
@@ -41,18 +43,19 @@ body{
   align-items: center;
 }
 .card-body{
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: .25rem;
+
+ 
 }
 .error{
-  color: var(--secondary-accent-color);
+  color: #fff;
   padding: 0;
   margin: 0;
-  margin-bottom: .5em;
+  height: 20px;
   font-size: 0.8em;
   text-align: center;
 }
@@ -63,13 +66,14 @@ body{
 
 form{
   border-top: solid 10px #702afbbc;
-  padding-top: .8rem;
+  padding-top: .25rem;
 }
 
 .form-control{
-  
   max-width: 95%;
 }
+
+
 
 .input-row{
   width: 20vw;
@@ -85,7 +89,8 @@ i {
 #email-icon, #password-icon, #signup-icon{
   display: flex;
   justify-content: space-evenly;
-  padding-right: 10px;
+  padding-right: 20px;
+  margin-bottom: 2px !important;
 }
 .buttons{
   
@@ -161,7 +166,7 @@ i {
   }
   #main-content {
     height: 80vh;
-    width: 80vw;
+    width: 85vw;
     padding: .3rem;
     box-shadow: 0 25px 60px 0 #212529ae;
     border-radius: 50px;
@@ -178,6 +183,9 @@ i {
   }
   #berry{
     width: 78vw;
+  }
+  i{
+    font-size: 16px;
   }
   
 }

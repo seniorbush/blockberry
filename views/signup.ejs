@@ -13,21 +13,24 @@
       </a>
         <p class="card-text">Please complete the registration form.</p>
         <form action="/signup" method="post">
-            <div class="mb-3 input-row" id="signup-icon">
+          <div class="name error"></div> 
+          <div class="mb-3 input-row" id="signup-icon">
               <i class="bi bi-person-fill"></i>
                 <input type="text" class="form-control" id="newName" placeholder="Username" name="name">             
               </div>
-              <div class="name error"></div>
+             
+              <div class="email error"></div>  
             <div class="mb-3 input-row" id="signup-icon">
               <i class="bi bi-envelope-fill"></i>
               <input type="email" class="form-control" id="newEmail" placeholder="Email" name="email">            
             </div>
-            <div class="email error"></div>
+            
+            <div class="password error"></div>
             <div class="mb-3 input-row" id="signup-icon">
               <i class="bi bi-key-fill"></i>
               <input type="password" class="form-control" id="newPassword" placeholder="Password" name="password">
             </div>  
-            <div class="password error"></div>
+            
             <div class="buttons">
               <button id="main-action" type="submit" class="btn btn-primary">Save</button> 
               <a class="signup-link" href="/">Back</a>
