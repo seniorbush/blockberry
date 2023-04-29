@@ -114,8 +114,8 @@
         const randomColor = function (labels){
             
             for (i = 0; i <labels.length; i++){
-                const r = Math.floor(Math.random() * 235);
-                const g = Math.floor(Math.random() * 55);
+                const r = Math.floor(Math.random() * 255);
+                const g = Math.floor(Math.random() * 255);
                 const b = Math.floor(Math.random() * 255);
                 backgroundColor.push(`rgb(${r}, ${g}, ${b}`);
             }
@@ -137,7 +137,6 @@
                 borderWidth: 2,
                 hoverOffset: 15,
                 hoverBackgroundColor: backgroundColor,
-                  
             }
         ]
         };

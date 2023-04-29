@@ -8,7 +8,17 @@
       
       </div>
         <div id="news-cards" class="container">
-
+            <div class="card guide">
+              
+              <div class="card-body">
+                <h1>Welcome!</h1>
+                
+                <p class="card-text">
+                  Our platform allows you to search for a 
+                  wide range of cryptocurrencies and add them 
+                  to your very own custom portfolio!                
+                </p>
+            </div>
         </div>
       </nav>
       <nav id="nav-pad" class="container navbar navbar-dark">
@@ -47,7 +57,36 @@
     </main>
 
     <script>
-      
+      //Fetch news from newsdata.io
+  fetch(
+    "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=blockchain%20OR%20ledger&language=en ")
+    .then((data) => {
+      return data.json();
+    })
+    .then((objectData) => {
+      newsData = "";
+      // console.log(objectData.results);
+      objectData.results.map((values) => {
+        
+        if (values.image_url) {
+          newsData += `<div class="card">
+          <img class="card-img-top" src="${values.image_url}" alt="">
+          <div class="card-body">
+            <a href='${values.link}'>
+              <p class="card-text">${values.title}</p>
+            </a>
+        </div>
+          
+        </div>`;
+
+        }
+        
+      });
+  
+      // console.log(listData);
+  
+      document.querySelector("#news-cards").innerHTML += newsData;
+    });    
       //Fetch asset prices from Coingecko
 fetch(
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
@@ -86,35 +125,7 @@ fetch(
   document.getElementById("date").innerHTML = date.toGMTString();
   
   
-  fetch(
-    "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=blockchain%20OR%20ledger&language=en ")
-    .then((data) => {
-      return data.json();
-    })
-    .then((objectData) => {
-      newsData = "";
-      // console.log(objectData.results);
-      objectData.results.map((values) => {
-        
-        if (values.image_url) {
-          newsData += `<div class="card">
-          <img class="card-img-top" src="${values.image_url}" alt="">
-          <div class="card-body">
-            <a href='${values.link}'>
-              <p class="card-text">${values.title}</p>
-            </a>
-        </div>
-          
-        </div>`;
-
-        }
-        
-      });
   
-      // console.log(listData);
-  
-      document.querySelector("#news-cards").innerHTML = newsData;
-    });
   
   //EVENT LISTENER TO SUBMIT INPUT AND FETCH COIN GECKO API
   const searchTokens = document.querySelector("#search-tokens");
