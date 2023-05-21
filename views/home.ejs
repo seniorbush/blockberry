@@ -57,7 +57,7 @@
     </main>
 
     <script>
-      //Fetch news from newsdata.io
+
   fetch(
     "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=blockchain%20OR%20ledger&language=en ")
     .then((data) => {
@@ -87,6 +87,8 @@
   
       document.querySelector("#news-cards").innerHTML += newsData;
     });    
+  
+
       //Fetch asset prices from Coingecko
 fetch(
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
@@ -124,7 +126,27 @@ fetch(
   const date = new Date();
   document.getElementById("date").innerHTML = date.toGMTString();
   
-  
+ 
+
+
+    //autocomplete search
+    // const getTokenList = async () => {
+    // let listData = "";
+
+    // const res = await fetch("https://api.coingecko.com/api/v3/coins/list");
+    // const data = await res.json();
+
+    // console.log(data);
+
+    // data.map((token) => {
+    //   listData += `<li>${token.id}</li>`;
+    // });
+
+    // document.querySelector("#beer-list").innerHTML = listData;
+    // };
+
+    // getTokenList();
+ 
   
   
   //EVENT LISTENER TO SUBMIT INPUT AND FETCH COIN GECKO API
