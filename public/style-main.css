@@ -1,11 +1,9 @@
-:root{
+:root {
   --main-accent-color: #702afb;
   --secondary-accent-color: #8143fd;
 
-  --main-background-color:#212529;
-  --secondary-background-color:#6c757d;
-
-  
+  --main-background-color: #212529;
+  --secondary-background-color: #6c757d;
 }
 
 body {
@@ -14,15 +12,13 @@ body {
   /* max-width: 100vw; */
 }
 
-.container-fluid{
-  padding-top: .5rem;
+.container-fluid {
+  padding-top: 0.5rem;
   background: linear-gradient(#702afb, #212529ae);
   border-radius: 12px;
-  border-bottom-left-radius: 0 ;
-  border-bottom-right-radius: 0 ;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
-
-
 
 #main-nav {
   border-bottom: 1px solid #6c757d;
@@ -33,19 +29,18 @@ body {
   height: 24px;
 }
 #b-title {
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 #berry {
   width: 275px;
   height: 70px;
 }
 
-#param{
+#param {
   border-color: var(--secondary-background-color);
   background-color: var(--main-background-color);
   color: var(--secondary-background-color);
 }
-
 
 thead {
   font-size: 1rem;
@@ -54,12 +49,11 @@ thead {
   top: 0;
 }
 
-#stickTable{
+#stickTable {
   background: linear-gradient(#702afbb0, #8143fdac);
-
 }
 
-#stickRow{
+#stickRow {
   border-radius: 12px;
 }
 .sel-nav {
@@ -72,7 +66,6 @@ thead {
   padding-bottom: 1.25rem;
 }
 
-
 #nav-pad {
   border-top: 1px solid #6c757d;
   border-bottom: 1px solid #6c757d;
@@ -82,10 +75,8 @@ thead {
   padding-bottom: 0.75rem;
 }
 
-
-
-
-#date, #news-text {
+#date,
+#news-text {
   font-style: italic;
   color: #6c757d;
 }
@@ -93,7 +84,6 @@ thead {
 td {
   transition: 0.2s !important;
 }
-
 
 .foot {
   display: flex;
@@ -103,9 +93,9 @@ td {
   font-style: italic;
 }
 
-#news-cards{
+#news-cards {
   display: grid;
-  grid-column-gap: .5rem;
+  grid-column-gap: 0.5rem;
   grid-auto-flow: column;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -114,7 +104,7 @@ td {
   scroll-snap-type: x mandatory;
 }
 
-.card{
+.card {
   width: 18rem;
   height: 20rem;
   display: flex;
@@ -123,11 +113,11 @@ td {
   border: none;
   border-radius: 12px;
   scroll-snap-align: start;
-  transition: .5s;
+  transition: 0.5s;
   background-color: var(--main-background-color);
 }
 
-.card-img-top{
+.card-img-top {
   border-radius: 30px;
   /* border-bottom-right-radius: 40px;
   border-top-right-radius: 40px; */
@@ -135,14 +125,20 @@ td {
   object-fit: cover;
 }
 
+.info {
+  border-right: solid 4px var(--secondary-accent-color);
+}
+.text {
+  font-size: 1.25rem;
+}
 
-.card-text{
-  transition: .5s;
+.card-text {
+  transition: 0.5s;
   color: rgba(223, 223, 223, 0.78);
 }
 
 .card-text:hover {
-  color: var(--main-accent-color);;
+  color: var(--main-accent-color);
 }
 
 a {
@@ -150,13 +146,12 @@ a {
 }
 
 ::-webkit-scrollbar {
-  height: .75rem;
-  width: .75rem;
-  
+  height: 0.75rem;
+  width: 0.75rem;
 }
 
-::-webkit-scrollbar-thumb{
-  border-radius: .5rem;
+::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -165,35 +160,32 @@ a {
 
 ::-webkit-scrollbar-track {
   background: rgba(28, 27, 27, 0.729);
-
-
 }
 
-#token-portfolio{
+#token-portfolio {
   padding-top: 4rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.sectionB{
+.sectionB {
   text-align: center;
 }
 
-.sectionC{
+.sectionC {
   /* padding: 5%; */
   padding-top: 5%;
-
 }
 
-#newToken, #newQty{
+#newToken,
+#newQty {
   border-color: var(--secondary-background-color);
   background-color: var(--main-background-color);
   color: #fff;
 }
 
-
-.table-title{
+.table-title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,46 +194,44 @@ a {
 }
 
 .table-title i {
-  padding-right: .2rem;
+  padding-right: 0.2rem;
 }
 
-.table-title h5{
+.table-title h5 {
   font-size: 18px;
 }
 
-#del-data{
+#del-data {
   transition: 0.3s;
 }
 
-#del-data:hover{
+#del-data:hover {
   cursor: pointer;
 }
-.btn{
+.btn {
   font-weight: 600;
   text-transform: uppercase;
   background-color: transparent !important;
   padding: 0.2rem 2rem;
   font-size: 1em;
-  border:2px solid var(--secondary-accent-color) !important;
+  border: 2px solid var(--secondary-accent-color) !important;
   outline: none;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: var(--secondary-accent-color) !important;
   border-color: transparent;
 }
 
-#bb-box{
+#bb-box {
   color: transparent;
-  transition: all .9s ease;
+  transition: all 0.9s ease;
 }
 
-
 .nav-link {
-  
   color: #fff;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .nav-link:hover #bb-box {
@@ -249,10 +239,10 @@ a {
 }
 
 .nav-link:hover {
-color: #fff;
+  color: #fff;
 }
 
-.total{
+.total {
   display: flex;
   justify-content: center;
 }
@@ -266,57 +256,55 @@ color: #fff;
   
 } */
 
-#addButton{
-  border-radius: .5em;
+#addButton {
+  border-radius: 0.5em;
   background-color: transparent !important;
   padding: 0.2rem 2rem;
   font-size: 1em;
-  border:2px solid var(--secondary-accent-color) !important;
+  border: 2px solid var(--secondary-accent-color) !important;
   outline: none;
-  transition: all .3s ease;
-
+  transition: all 0.3s ease;
 }
-#addButton:hover{
+#addButton:hover {
   background-color: var(--secondary-accent-color) !important;
   border-color: transparent;
 }
 
 @media only screen and (max-width: 800px) {
-  .container-fluid{
+  .container-fluid {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .container-fluid ul{
+  .container-fluid ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
   }
-  #token-portfolio{
+  #token-portfolio {
     flex-direction: column-reverse;
   }
-  .sectionA canvas{
-    width: 300px !important; 
+  .sectionA canvas {
+    width: 300px !important;
     height: 300px !important;
   }
-  table,thead{
+  table,
+  thead {
     font-size: 12px;
   }
-  #img-logo{
-  height: 15px;
-  width: 15px;
+  #img-logo {
+    height: 15px;
+    width: 15px;
   }
-  .table-title h5{
+  .table-title h5 {
     font-size: 14px;
   }
   .nav-link {
-    font-size: .8em;
+    font-size: 0.8em;
   }
-  #date{
-    font-size: .8rem;
-    padding-bottom: .3rem;
+  #date {
+    font-size: 0.8rem;
+    padding-bottom: 0.3rem;
   }
-}  
-
+}
