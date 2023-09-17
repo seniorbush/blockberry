@@ -10,10 +10,10 @@
         <div id="news-cards" class="container">
             <div class="card guide">
               
-              <div class="card-body">
+              <div class="card-body info">
                 <h1>Welcome!</h1>
                 
-                <p class="card-text">
+                <p class="card-text text">
                   Our platform allows you to search for a 
                   wide range of cryptocurrencies and add them 
                   to your very own custom portfolio!                
@@ -59,7 +59,7 @@
     <script>
 
   fetch(
-    "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=blockchain%20OR%20ledger&language=en ")
+    "https://newsdata.io/api/1/news?apikey=pub_1186204cddda4e3240053ffd74370bde06bf1&q=cryptocurrency&country=ru,gb,us&language=en&category=business,politics,technology" )
     .then((data) => {
       return data.json();
     })
